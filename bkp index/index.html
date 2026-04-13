@@ -30,32 +30,26 @@ body {
 }
 
 /* ─── NAVBAR ─── */
-.navbar { position:fixed; top:0; left:0; right:0; z-index:1000; display:flex; align-items:center; justify-content:center; padding:0 40px; height:72px; background:rgba(250,248,248,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid rgba(209,180,194,0.25); transition:all 0.4s ease; overflow:visible; }
+.navbar { position:fixed; top:0; left:0; right:0; z-index:1000; display:flex; align-items:center; justify-content:center; padding:0 40px; height:72px; background:rgba(250,248,248,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid rgba(209,180,194,0.25); transition:all 0.4s ease; }
 .navbar.scrolled { height:60px; background:rgba(250,248,248,0.97); box-shadow:0 2px 20px rgba(44,37,39,0.06); }
 .nav-links { display:flex; align-items:center; gap:0; list-style:none; }
 .nav-links li a { text-decoration:none; font-family:'Josefin Sans',sans-serif; font-weight:300; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--text-mid); padding:8px 28px; transition:color 0.3s; position:relative; }
 .nav-links li a::after { content:''; position:absolute; bottom:0; left:50%; right:50%; height:1px; background:var(--mauve); transition:all 0.35s ease; }
 .nav-links li a:hover { color:var(--charcoal); }
 .nav-links li a:hover::after { left:28px; right:28px; }
-.nav-logo { width:52px; height:52px; border-radius:50%; object-fit:cover; margin:0 32px; transition:transform 0.3s; }
+.nav-logo { width:60px; height:60px; border-radius:50%; object-fit:cover; margin:0 32px; transition:transform 0.3s; }
 .nav-logo:hover { transform:scale(1.08); }
-.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; position:absolute; right:24px; z-index:1002; background:none; border:none; padding:8px; }
-.hamburger span { display:block; width:24px; height:1.5px; background:var(--charcoal); transition:all 0.3s; transform-origin:center; }
-.hamburger.active span:nth-child(1) { transform:rotate(45deg) translate(4.5px,4.5px); }
-.hamburger.active span:nth-child(2) { opacity:0; }
-.hamburger.active span:nth-child(3) { transform:rotate(-45deg) translate(4.5px,-4.5px); }
-.nav-mobile-logo { display:none; position:absolute; left:24px; }
-.nav-mobile-logo img { width:42px; height:42px; border-radius:50%; object-fit:cover; }
+.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; position:absolute; right:24px; z-index:1001; background:none; border:none; }
+.hamburger span { width:24px; height:1.5px; background:var(--charcoal); transition:all 0.3s; }
 
 /* ─── HERO ─── */
 .hero { height:100vh; min-height:600px; position:relative; display:flex; align-items:center; justify-content:center; overflow:hidden; }
 .hero-bg { position:absolute; inset:0; background:url('img/bg-kiss-bw.jpg') center center / cover no-repeat; filter:brightness(0.35); transform:scale(1.05); animation:heroZoom 20s ease-in-out infinite alternate; }
-.hero-bg-mobile { position:absolute; inset:0; background:url('img/bg-champagne.jpg') center center / cover no-repeat; filter:brightness(0.35); transform:scale(1.05); animation:heroZoom 20s ease-in-out infinite alternate; display:none; }
 @keyframes heroZoom { 0%{transform:scale(1.05)} 100%{transform:scale(1.12)} }
 .hero-overlay { position:absolute; inset:0; background:linear-gradient(180deg,rgba(44,37,39,0.15) 0%,rgba(44,37,39,0.05) 40%,rgba(44,37,39,0.3) 100%); }
 .hero-content { position:relative; z-index:2; text-align:center; color:#fff; animation:fadeUp 1.2s ease-out; }
 @keyframes fadeUp { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
-.hero-logo { width:200px; border-radius:50%; margin-bottom:32px; }
+.hero-logo { width:350px; border-radius:50%; margin-bottom:32px; }
 .hero-tagline { font-family:'Great Vibes',cursive; font-size:clamp(28px,5vw,48px); font-weight:400; color:var(--blush); margin-bottom:12px; opacity:0; animation:fadeUp 1.2s ease-out 0.4s forwards; }
 .hero-sub { font-family:'Josefin Sans',sans-serif; font-weight:200; font-size:12px; letter-spacing:6px; text-transform:uppercase; color:rgba(255,255,255,0.7); opacity:0; animation:fadeUp 1.2s ease-out 0.7s forwards; }
 .hero-scroll { position:absolute; bottom:40px; left:50%; transform:translateX(-50%); z-index:2; }
@@ -208,26 +202,11 @@ section { padding:120px 0; }
 
 /* ─── RESPONSIVE ─── */
 @media (max-width:900px) {
-  .hero-bg { display:none; }
-  .hero-bg-mobile { display:block; }
   .nav-links { display:none; }
   .hamburger { display:flex; }
-  .nav-mobile-logo { display:block; }
-  .nav-links.open { display:flex; flex-direction:column; position:fixed; top:0; left:0; width:100%; height:100vh; height:100dvh; background:var(--charcoal); justify-content:center; align-items:center; gap:4px; z-index:1001; animation:menuFade 0.3s ease; overflow-y:auto; }
-  .nav-links.open li { opacity:0; animation:menuItemSlide 0.4s ease forwards; }
-  .nav-links.open li:nth-child(1) { animation-delay:0.05s; }
-  .nav-links.open li:nth-child(2) { animation-delay:0.1s; }
-  .nav-links.open li:nth-child(3) { animation-delay:0.15s; }
-  .nav-links.open li:nth-child(4) { animation-delay:0.2s; }
-  .nav-links.open li:nth-child(5) { animation-delay:0.25s; }
-  .nav-links.open li:nth-child(6) { animation-delay:0.3s; }
-  .nav-links.open li a { font-size:14px; letter-spacing:4px; padding:18px 28px; color:rgba(255,255,255,0.8); }
-  .nav-links.open li a:hover { color:var(--mauve); }
-  .nav-links.open li a::after { display:none; }
-  .nav-links.open .nav-logo { width:72px; height:72px; margin:12px 0; border:2px solid rgba(209,180,194,0.3); }
-  .hamburger.active span { background:#fff; }
-  @keyframes menuFade { from{opacity:0} to{opacity:1} }
-  @keyframes menuItemSlide { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+  .nav-links.open { display:flex; flex-direction:column; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(250,248,248,0.98); justify-content:center; align-items:center; gap:8px; z-index:999; }
+  .nav-links.open li a { font-size:13px; padding:16px 28px; }
+  .nav-links.open .nav-logo { width:80px; height:80px; margin:16px 0; }
   .about-grid { grid-template-columns:1fr; gap:48px; }
   .services-grid { grid-template-columns:1fr; }
   .process-steps { grid-template-columns:1fr; gap:40px; }
@@ -254,21 +233,19 @@ section { padding:120px 0; }
     <li><a href="#portafolio">Portafolio</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
-  <a href="#inicio" class="nav-mobile-logo"><img src="img/logo-circle.jpg" alt="Aura Eventos"></a>
-  <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="inicio">
   <div class="hero-bg"></div>
-  <div class="hero-bg-mobile"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <img src="img/logo-circle.jpg" alt="Aura Eventos" class="hero-logo">
-    <h1 class="hero-tagline">Donde cada detalle cuenta</h1>
+    <h1 class="hero-tagline">Donde cada detalle importa</h1>
     <p class="hero-sub">Julieta Porras &bull; Brenda Benitez</p>
   </div>
-  <div class="hero-scroll"><a href="#intro"><span>Scroll</span><div class="scroll-line"></div></a></div>
+  <div class="hero-scroll"><a href="#intro"><span>Desplazá</span><div class="scroll-line"></div></a></div>
 </section>
 
 <!-- INTRO -->
@@ -363,12 +340,12 @@ section { padding:120px 0; }
     </div>
     <div class="testimonials-wrapper reveal">
       <div class="testimonial-slide active">
-        <div class="testimonial-quote">Brenda y Julieta hicieron que mi fiesta de 15 fuera un sueño hecho realidad. Se ocuparon de cada detalle con una dedicación increíble. No puedo estar más agradecida.</div>
-        <p class="testimonial-author">— Valentina M.</p>
+        <div class="testimonial-quote">Hola Bren! Cómo estás? La verdad que quería agradecerte por todo lo que hicieron para nuestro casamiento ✨ Una locura como quedó todo, más allá de lo que soñamos. Gracias por la dedicación y por estar en cada detalle, fue una noche única e inolvidable 🤍</div>
+        <p class="testimonial-author">— Agostina B.</p>
       </div>
       <div class="testimonial-slide">
-        <div class="testimonial-quote">Desde la primera reunión nos transmitieron confianza y tranquilidad. El día de nuestro casamiento todo salió perfecto, pudimos disfrutar sin pensar en nada. Las recomendamos totalmente.</div>
-        <p class="testimonial-author">— Carolina & Martín</p>
+        <div class="testimonial-quote">Hola Juli! Muchas gracias por todo, divino todo, me encantó, las voy a volver a llamar próximamente ❤️</div>
+        <p class="testimonial-author">— Laura G.</p>
       </div>
       <div class="testimonial-slide">
         <div class="testimonial-quote">Profesionales, organizadas y con un gusto estético impecable. Superaron nuestras expectativas y la de todos nuestros invitados. Sin dudas las volvería a elegir.</div>
@@ -391,22 +368,23 @@ section { padding:120px 0; }
       <h2 class="section-title">Nuestros <em>eventos</em></h2>
     </div>
     <div class="portfolio-grid reveal">
-      <div class="portfolio-item" onclick="openLightbox(0)"><img src="img/p07.jpg" alt="Evento" loading="lazy"></div>
-      <div class="portfolio-item wide" onclick="openLightbox(1)"><img src="img/p10.jpg" alt="Evento" loading="lazy"></div>
-      <div class="portfolio-item" onclick="openLightbox(2)"><img src="img/p01.jpg" alt="Evento" loading="lazy"></div>
-      <div class="portfolio-item" onclick="openLightbox(3)"><img src="img/p02.jpg" alt="Evento" loading="lazy"></div>
-      <div class="portfolio-item" onclick="openLightbox(4)"><img src="img/p03.jpg" alt="Evento" loading="lazy"></div>
-      <div class="portfolio-item wide" onclick="openLightbox(5)"><img src="img/p18.jpg" alt="Evento" loading="lazy"></div>
-      <div class="portfolio-item" onclick="openLightbox(6)"><img src="img/p05.jpg" alt="Evento" loading="lazy"></div>
-      <div class="portfolio-item" onclick="openLightbox(7)"><img src="img/p06.jpg" alt="Evento" loading="lazy"></div>
-      <div class="portfolio-item" onclick="openLightbox(8)"><img src="img/p12.jpg" alt="Evento" loading="lazy"></div>
-      <div class="portfolio-item" onclick="openLightbox(9)"><img src="img/p13.jpg" alt="Evento" loading="lazy"></div>
-      <div class="portfolio-item wide" onclick="openLightbox(10)"><img src="img/p19.jpg" alt="Evento" loading="lazy"></div>
-      <div class="portfolio-item" onclick="openLightbox(11)"><img src="img/p09.jpg" alt="Evento" loading="lazy"></div>
-      <div class="portfolio-item" onclick="openLightbox(12)"><img src="img/p14.jpg" alt="Evento" loading="lazy"></div>
-      <div class="portfolio-item" onclick="openLightbox(13)"><img src="img/p17.jpg" alt="Evento" loading="lazy"></div>
-      <div class="portfolio-item" onclick="openLightbox(14)"><img src="img/p08.jpg" alt="Evento" loading="lazy"></div>
-      <div class="portfolio-item" onclick="openLightbox(15)"><img src="img/p11.jpg" alt="Evento" loading="lazy"></div>
+      <div class="portfolio-item" onclick="openLightbox(0)"><img src="img/p01.jpg" alt="Evento" loading="lazy"></div>
+      <div class="portfolio-item wide" onclick="openLightbox(1)"><img src="img/p02.jpg" alt="Evento" loading="lazy"></div>
+      <div class="portfolio-item" onclick="openLightbox(2)"><img src="img/p03.jpg" alt="Evento" loading="lazy"></div>
+      <div class="portfolio-item" onclick="openLightbox(3)"><img src="img/p04.jpg" alt="Evento" loading="lazy"></div>
+      <div class="portfolio-item" onclick="openLightbox(4)"><img src="img/p05.jpg" alt="Evento" loading="lazy"></div>
+      <div class="portfolio-item wide" onclick="openLightbox(5)"><img src="img/p06.jpg" alt="Evento" loading="lazy"></div>
+      <div class="portfolio-item" onclick="openLightbox(6)"><img src="img/p07.jpg" alt="Evento" loading="lazy"></div>
+      <div class="portfolio-item" onclick="openLightbox(7)"><img src="img/p08.jpg" alt="Evento" loading="lazy"></div>
+      <div class="portfolio-item" onclick="openLightbox(8)"><img src="img/p09.jpg" alt="Evento" loading="lazy"></div>
+      <div class="portfolio-item" onclick="openLightbox(9)"><img src="img/p10.jpg" alt="Evento" loading="lazy"></div>
+      <div class="portfolio-item wide" onclick="openLightbox(10)"><img src="img/p11.jpg" alt="Evento" loading="lazy"></div>
+      <div class="portfolio-item" onclick="openLightbox(11)"><img src="img/p12.jpg" alt="Evento" loading="lazy"></div>
+      <div class="portfolio-item" onclick="openLightbox(12)"><img src="img/p13.jpg" alt="Evento" loading="lazy"></div>
+      <div class="portfolio-item" onclick="openLightbox(13)"><img src="img/p14.jpg" alt="Evento" loading="lazy"></div>
+      <div class="portfolio-item" onclick="openLightbox(14)"><img src="img/p15.jpg" alt="Evento" loading="lazy"></div>
+      <div class="portfolio-item" onclick="openLightbox(15)"><img src="img/p16.jpg" alt="Evento" loading="lazy"></div>
+      <div class="portfolio-item" onclick="openLightbox(15)"><img src="img/p17.jpg" alt="Evento" loading="lazy"></div>
     </div>
   </div>
 </section>
@@ -524,18 +502,8 @@ const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 60); });
 
 // Mobile menu
-function toggleMenu() { 
-  const nav = document.getElementById('navLinks');
-  const btn = document.getElementById('hamburgerBtn');
-  nav.classList.toggle('open'); 
-  btn.classList.toggle('active');
-  document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
-}
-document.querySelectorAll('#navLinks a').forEach(a => { a.addEventListener('click', () => { 
-  document.getElementById('navLinks').classList.remove('open'); 
-  document.getElementById('hamburgerBtn').classList.remove('active');
-  document.body.style.overflow = '';
-}); });
+function toggleMenu() { document.getElementById('navLinks').classList.toggle('open'); }
+document.querySelectorAll('#navLinks a').forEach(a => { a.addEventListener('click', () => { document.getElementById('navLinks').classList.remove('open'); }); });
 
 // Testimonials
 let current = 0;

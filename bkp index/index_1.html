@@ -30,7 +30,7 @@ body {
 }
 
 /* ─── NAVBAR ─── */
-.navbar { position:fixed; top:0; left:0; right:0; z-index:1000; display:flex; align-items:center; justify-content:center; padding:0 40px; height:72px; background:rgba(250,248,248,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid rgba(209,180,194,0.25); transition:all 0.4s ease; overflow:visible; }
+.navbar { position:fixed; top:0; left:0; right:0; z-index:1000; display:flex; align-items:center; justify-content:center; padding:0 40px; height:72px; background:rgba(250,248,248,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid rgba(209,180,194,0.25); transition:all 0.4s ease; }
 .navbar.scrolled { height:60px; background:rgba(250,248,248,0.97); box-shadow:0 2px 20px rgba(44,37,39,0.06); }
 .nav-links { display:flex; align-items:center; gap:0; list-style:none; }
 .nav-links li a { text-decoration:none; font-family:'Josefin Sans',sans-serif; font-weight:300; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--text-mid); padding:8px 28px; transition:color 0.3s; position:relative; }
@@ -50,7 +50,6 @@ body {
 /* ─── HERO ─── */
 .hero { height:100vh; min-height:600px; position:relative; display:flex; align-items:center; justify-content:center; overflow:hidden; }
 .hero-bg { position:absolute; inset:0; background:url('img/bg-kiss-bw.jpg') center center / cover no-repeat; filter:brightness(0.35); transform:scale(1.05); animation:heroZoom 20s ease-in-out infinite alternate; }
-.hero-bg-mobile { position:absolute; inset:0; background:url('img/bg-champagne.jpg') center center / cover no-repeat; filter:brightness(0.35); transform:scale(1.05); animation:heroZoom 20s ease-in-out infinite alternate; display:none; }
 @keyframes heroZoom { 0%{transform:scale(1.05)} 100%{transform:scale(1.12)} }
 .hero-overlay { position:absolute; inset:0; background:linear-gradient(180deg,rgba(44,37,39,0.15) 0%,rgba(44,37,39,0.05) 40%,rgba(44,37,39,0.3) 100%); }
 .hero-content { position:relative; z-index:2; text-align:center; color:#fff; animation:fadeUp 1.2s ease-out; }
@@ -208,12 +207,10 @@ section { padding:120px 0; }
 
 /* ─── RESPONSIVE ─── */
 @media (max-width:900px) {
-  .hero-bg { display:none; }
-  .hero-bg-mobile { display:block; }
   .nav-links { display:none; }
   .hamburger { display:flex; }
   .nav-mobile-logo { display:block; }
-  .nav-links.open { display:flex; flex-direction:column; position:fixed; top:0; left:0; width:100%; height:100vh; height:100dvh; background:var(--charcoal); justify-content:center; align-items:center; gap:4px; z-index:1001; animation:menuFade 0.3s ease; overflow-y:auto; }
+  .nav-links.open { display:flex; flex-direction:column; position:fixed; top:0; left:0; right:0; bottom:0; background:var(--warm-white); justify-content:center; align-items:center; gap:4px; z-index:1001; animation:menuFade 0.3s ease; }
   .nav-links.open li { opacity:0; animation:menuItemSlide 0.4s ease forwards; }
   .nav-links.open li:nth-child(1) { animation-delay:0.05s; }
   .nav-links.open li:nth-child(2) { animation-delay:0.1s; }
@@ -221,11 +218,9 @@ section { padding:120px 0; }
   .nav-links.open li:nth-child(4) { animation-delay:0.2s; }
   .nav-links.open li:nth-child(5) { animation-delay:0.25s; }
   .nav-links.open li:nth-child(6) { animation-delay:0.3s; }
-  .nav-links.open li a { font-size:14px; letter-spacing:4px; padding:18px 28px; color:rgba(255,255,255,0.8); }
-  .nav-links.open li a:hover { color:var(--mauve); }
+  .nav-links.open li a { font-size:14px; letter-spacing:4px; padding:18px 28px; color:var(--text-dark); }
   .nav-links.open li a::after { display:none; }
-  .nav-links.open .nav-logo { width:72px; height:72px; margin:12px 0; border:2px solid rgba(209,180,194,0.3); }
-  .hamburger.active span { background:#fff; }
+  .nav-links.open .nav-logo { width:72px; height:72px; margin:12px 0; }
   @keyframes menuFade { from{opacity:0} to{opacity:1} }
   @keyframes menuItemSlide { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
   .about-grid { grid-template-columns:1fr; gap:48px; }
@@ -261,7 +256,6 @@ section { padding:120px 0; }
 <!-- HERO -->
 <section class="hero" id="inicio">
   <div class="hero-bg"></div>
-  <div class="hero-bg-mobile"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <img src="img/logo-circle.jpg" alt="Aura Eventos" class="hero-logo">
