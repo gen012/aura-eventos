@@ -30,22 +30,34 @@ body {
 }
 
 /* ─── NAVBAR ─── */
-.navbar { position:fixed; top:0; left:0; right:0; z-index:1000; display:flex; align-items:center; justify-content:center; padding:0 40px; height:72px; background:rgba(245,240,241,0.94); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid rgba(209,180,194,0.3); transition:all 0.4s ease; overflow:visible; }
+.navbar { position:fixed; top:0; left:0; right:0; z-index:1000; display:flex; align-items:center; justify-content:center; padding:0 40px; height:72px; background:rgba(245,240,241,0.94); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid rgba(209,180,194,0.3); transition:all 0.4s ease; }
 .navbar.scrolled { height:60px; background:rgba(232,213,221,0.95); box-shadow:0 2px 20px rgba(44,37,39,0.08); }
-.nav-links { display:flex; align-items:center; gap:0; list-style:none; }
-.nav-links li a { text-decoration:none; font-family:'Josefin Sans',sans-serif; font-weight:300; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--text-mid); padding:8px 32px; transition:color 0.3s; position:relative; }
-.nav-links li a::after { content:''; position:absolute; bottom:0; left:50%; right:50%; height:1px; background:var(--mauve); transition:all 0.35s ease; }
-.nav-links li a:hover { color:var(--charcoal); }
-.nav-links li a:hover::after { left:28px; right:28px; }
+.nav-links-desktop { display:flex; align-items:center; gap:0; list-style:none; }
+.nav-links-desktop li a { text-decoration:none; font-family:'Josefin Sans',sans-serif; font-weight:300; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--text-mid); padding:8px 32px; transition:color 0.3s; position:relative; }
+.nav-links-desktop li a::after { content:''; position:absolute; bottom:0; left:50%; right:50%; height:1px; background:var(--mauve); transition:all 0.35s ease; }
+.nav-links-desktop li a:hover { color:var(--charcoal); }
+.nav-links-desktop li a:hover::after { left:28px; right:28px; }
 .nav-logo { width:52px; height:52px; border-radius:50%; object-fit:cover; margin:0 32px; transition:transform 0.3s; }
 .nav-logo:hover { transform:scale(1.08); }
-.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; position:absolute; right:24px; z-index:1002; background:none; border:none; padding:8px; }
+.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; position:absolute; right:24px; z-index:1050; background:none; border:none; padding:8px; }
 .hamburger span { display:block; width:24px; height:1.5px; background:var(--charcoal); transition:all 0.3s; transform-origin:center; }
 .hamburger.active span:nth-child(1) { transform:rotate(45deg) translate(4.5px,4.5px); }
 .hamburger.active span:nth-child(2) { opacity:0; }
 .hamburger.active span:nth-child(3) { transform:rotate(-45deg) translate(4.5px,-4.5px); }
+.hamburger.active span { background:#fff; }
 .nav-mobile-logo { display:none; position:absolute; left:24px; }
 .nav-mobile-logo img { width:42px; height:42px; border-radius:50%; object-fit:cover; }
+
+/* ─── MOBILE MENU (outside nav) ─── */
+.mobile-menu-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1030; }
+.mobile-menu-overlay.active { display:block; }
+.mobile-menu { display:none; position:fixed; top:0; right:0; width:75%; height:100%; background:var(--charcoal); z-index:1040; flex-direction:column; justify-content:center; align-items:center; gap:0; overflow-y:auto; box-shadow:-8px 0 40px rgba(0,0,0,0.4); }
+.mobile-menu.active { display:flex; animation:menuSlideIn 0.35s ease; }
+@keyframes menuSlideIn { from{transform:translateX(100%)} to{transform:translateX(0)} }
+.mobile-menu-link { text-decoration:none; font-family:'Josefin Sans',sans-serif; font-weight:300; font-size:15px; letter-spacing:5px; text-transform:uppercase; color:rgba(255,255,255,0.75); padding:22px 28px; display:block; text-align:center; transition:color 0.3s; }
+.mobile-menu-link:hover { color:var(--mauve); }
+.mobile-menu-logo { display:block; margin:20px 0 28px; }
+.mobile-menu-logo img { width:80px; height:80px; border-radius:50%; object-fit:cover; border:2px solid rgba(209,180,194,0.25); }
 
 /* ─── HERO ─── */
 .hero { height:100vh; min-height:600px; position:relative; display:flex; align-items:center; justify-content:center; overflow:hidden; }
@@ -210,25 +222,9 @@ section { padding:120px 0; }
 @media (max-width:900px) {
   .hero-bg { display:none; }
   .hero-bg-mobile { display:block; }
-  .nav-links { display:none; }
+  .nav-links-desktop { display:none; }
   .hamburger { display:flex; }
   .nav-mobile-logo { display:block; }
-  .nav-links.open { display:flex; flex-direction:column; position:fixed; top:0; right:0; width:75%; height:100vh; height:100dvh; background:var(--charcoal); justify-content:center; align-items:center; gap:0; z-index:1001; overflow-y:auto; animation:menuSlideIn 0.35s ease; box-shadow:-8px 0 40px rgba(0,0,0,0.4); }
-  @keyframes menuSlideIn { from{transform:translateX(100%)} to{transform:translateX(0)} }
-  .nav-links.open li { opacity:0; animation:menuItemSlide 0.4s ease forwards; }
-  .nav-links.open li:nth-child(1) { animation-delay:0.1s; }
-  .nav-links.open li:nth-child(2) { animation-delay:0.16s; }
-  .nav-links.open li:nth-child(3) { animation-delay:0.22s; }
-  .nav-links.open li:nth-child(4) { animation-delay:0.28s; }
-  .nav-links.open li:nth-child(5) { animation-delay:0.34s; }
-  .nav-links.open li a { font-size:15px; letter-spacing:5px; padding:22px 28px; color:rgba(255,255,255,0.75); display:block; text-align:center; transition:color 0.3s, letter-spacing 0.3s; }
-  .nav-links.open li a:hover { color:var(--mauve); letter-spacing:7px; }
-  .nav-links.open li a::after { display:none; }
-  .nav-links.open .nav-logo { width:80px; height:80px; margin:20px 0 28px; border:2px solid rgba(209,180,194,0.25); }
-  .hamburger.active span { background:#fff; }
-  .menu-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:1000; }
-  .menu-overlay.active { display:block; }
-  @keyframes menuItemSlide { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
   .about-grid { grid-template-columns:1fr; gap:48px; }
   .services-grid { grid-template-columns:1fr; }
   .process-steps { grid-template-columns:1fr; gap:40px; }
@@ -247,17 +243,26 @@ section { padding:120px 0; }
 
 <!-- NAVBAR -->
 <nav class="navbar" id="navbar">
-  <ul class="nav-links" id="navLinks">
+  <a href="#inicio" class="nav-mobile-logo"><img src="img/logo-circle.jpg" alt="Aura Eventos"></a>
+  <ul class="nav-links-desktop">
     <li><a href="#sobre-nosotras">Sobre Nosotras</a></li>
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#inicio"><img src="img/logo-circle.jpg" alt="Aura Eventos" class="nav-logo"></a></li>
     <li><a href="#portafolio">Portafolio</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
-  <a href="#inicio" class="nav-mobile-logo"><img src="img/logo-circle.jpg" alt="Aura Eventos"></a>
   <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
-<div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+<!-- Mobile menu - outside nav to avoid stacking context issues -->
+<div class="mobile-menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#sobre-nosotras" class="mobile-menu-link">Sobre Nosotras</a>
+  <a href="#servicios" class="mobile-menu-link">Servicios</a>
+  <a href="#inicio" class="mobile-menu-logo"><img src="img/logo-circle.jpg" alt="Aura Eventos"></a>
+  <a href="#portafolio" class="mobile-menu-link">Portafolio</a>
+  <a href="#contacto" class="mobile-menu-link">Contacto</a>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="inicio">
@@ -465,7 +470,7 @@ section { padding:120px 0; }
         <div class="contact-info">
           <div class="contact-info-item">
             <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <span><a href="/cdn-cgi/l/email-protection#e283979083928e838c8c879091cc8088a2858f838b8ecc818d8f"><span class="__cf_email__" data-cfemail="7e1f0b0c1f0e121f10101b0c0d501c143e19131f1712501d1113">[email&#160;protected]</span></a></span>
+            <span><a href="mailto:auraplanners.bj@gmail.com">auraplanners.bj@gmail.com</a></span>
           </div>
           <div class="contact-info-item">
             <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -514,89 +519,127 @@ section { padding:120px 0; }
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// Navbar
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 60); });
-
-// Mobile menu
+<script>
+// Menu functions
 function toggleMenu() { 
-  const nav = document.getElementById('navLinks');
-  const btn = document.getElementById('hamburgerBtn');
-  const overlay = document.getElementById('menuOverlay');
-  nav.classList.toggle('open'); 
+  var menu = document.getElementById('mobileMenu');
+  var btn = document.getElementById('hamburgerBtn');
+  var overlay = document.getElementById('menuOverlay');
+  if (!menu || !btn) return;
+  menu.classList.toggle('active'); 
   btn.classList.toggle('active');
-  overlay.classList.toggle('active');
-  document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+  if (overlay) overlay.classList.toggle('active');
+  document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
 }
-document.querySelectorAll('#navLinks a').forEach(a => { a.addEventListener('click', (e) => { 
-  const href = a.getAttribute('href');
-  document.getElementById('navLinks').classList.remove('open'); 
-  document.getElementById('hamburgerBtn').classList.remove('active');
-  document.getElementById('menuOverlay').classList.remove('active');
-  document.body.style.overflow = '';
-  if (href && href.startsWith('#')) {
-    e.preventDefault();
-    const target = document.querySelector(href);
-    if (target) {
-      setTimeout(() => { target.scrollIntoView({ behavior: 'smooth' }); }, 50);
-    }
+
+// Close mobile menu when a link is clicked
+document.querySelectorAll('.mobile-menu-link, .mobile-menu-logo').forEach(function(link) {
+  link.addEventListener('click', function() {
+    setTimeout(function() {
+      var menu = document.getElementById('mobileMenu');
+      var btn = document.getElementById('hamburgerBtn');
+      var overlay = document.getElementById('menuOverlay');
+      if (menu) menu.classList.remove('active');
+      if (btn) btn.classList.remove('active');
+      if (overlay) overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }, 150);
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Navbar scroll
+  var navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', function() { 
+    if (window.scrollY > 60) { navbar.classList.add('scrolled'); } 
+    else { navbar.classList.remove('scrolled'); }
+  });
+
+  // Scroll reveal
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) { 
+      entries.forEach(function(e) { if(e.isIntersecting) e.target.classList.add('visible'); }); 
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('visible'); });
   }
-}); });
 
-// Testimonials
-let current = 0;
-const slides = document.querySelectorAll('.testimonial-slide');
-const dots = document.querySelectorAll('.testi-dot');
-function goSlide(n) { slides[current].classList.remove('active'); dots[current].classList.remove('active'); current = n; slides[current].classList.add('active'); dots[current].classList.add('active'); }
-setInterval(() => { goSlide((current + 1) % slides.length); }, 10000);
+  // Testimonials
+  var tCurrent = 0;
+  var tSlides = document.querySelectorAll('.testimonial-slide');
+  var tDots = document.querySelectorAll('.testi-dot');
+  window.goSlide = function(n) { 
+    tSlides[tCurrent].classList.remove('active'); 
+    tDots[tCurrent].classList.remove('active'); 
+    tCurrent = n; 
+    tSlides[tCurrent].classList.add('active'); 
+    tDots[tCurrent].classList.add('active'); 
+  };
+  setInterval(function() { window.goSlide((tCurrent + 1) % tSlides.length); }, 10000);
 
-// Lightbox
-const portfolioImgs = [...document.querySelectorAll('.portfolio-item img')].map(i => i.src);
-let lbIdx = 0;
-function openLightbox(idx) { lbIdx = idx; document.getElementById('lightboxImg').src = portfolioImgs[lbIdx]; document.getElementById('lightbox').classList.add('active'); document.body.style.overflow = 'hidden'; }
-function closeLightbox(e) { if(e && e.target !== e.currentTarget && !e.target.classList.contains('lightbox-close')) return; document.getElementById('lightbox').classList.remove('active'); document.body.style.overflow = ''; }
-function navLightbox(dir) { lbIdx = (lbIdx + dir + portfolioImgs.length) % portfolioImgs.length; document.getElementById('lightboxImg').src = portfolioImgs[lbIdx]; }
-document.addEventListener('keydown', e => { if(!document.getElementById('lightbox').classList.contains('active')) return; if(e.key === 'Escape') closeLightbox(); if(e.key === 'ArrowRight') navLightbox(1); if(e.key === 'ArrowLeft') navLightbox(-1); });
+  // Lightbox
+  var pImgs = [];
+  document.querySelectorAll('.portfolio-item img').forEach(function(i) { pImgs.push(i.src); });
+  var lbIdx = 0;
+  window.openLightbox = function(idx) { 
+    lbIdx = idx; 
+    document.getElementById('lightboxImg').src = pImgs[lbIdx]; 
+    document.getElementById('lightbox').classList.add('active'); 
+    document.body.style.overflow = 'hidden'; 
+  };
+  window.closeLightbox = function(e) { 
+    if(e && e.target !== e.currentTarget && !e.target.classList.contains('lightbox-close')) return; 
+    document.getElementById('lightbox').classList.remove('active'); 
+    document.body.style.overflow = ''; 
+  };
+  window.navLightbox = function(dir) { 
+    lbIdx = (lbIdx + dir + pImgs.length) % pImgs.length; 
+    document.getElementById('lightboxImg').src = pImgs[lbIdx]; 
+  };
+  document.addEventListener('keydown', function(e) { 
+    if(!document.getElementById('lightbox').classList.contains('active')) return; 
+    if(e.key === 'Escape') window.closeLightbox(); 
+    if(e.key === 'ArrowRight') window.navLightbox(1); 
+    if(e.key === 'ArrowLeft') window.navLightbox(-1); 
+  });
 
-// Scroll reveal
-const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.15 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Formspree Ajax
-const contactForm = document.getElementById('contactForm');
-contactForm.addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const btn = document.getElementById('formBtn');
-  const status = document.getElementById('formStatus');
-  btn.textContent = 'Enviando...';
-  btn.disabled = true;
-  status.style.display = 'none';
-
-  try {
-    const res = await fetch(contactForm.action, {
-      method: 'POST',
-      body: new FormData(contactForm),
-      headers: { 'Accept': 'application/json' }
+  // Formspree
+  var cf = document.getElementById('contactForm');
+  if (cf) {
+    cf.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var btn = document.getElementById('formBtn');
+      var status = document.getElementById('formStatus');
+      btn.textContent = 'Enviando...';
+      btn.disabled = true;
+      status.style.display = 'none';
+      fetch(cf.action, {
+        method: 'POST',
+        body: new FormData(cf),
+        headers: { 'Accept': 'application/json' }
+      }).then(function(res) {
+        if (res.ok) {
+          cf.style.display = 'none';
+          document.getElementById('formSuccess').style.display = 'block';
+          cf.reset();
+        } else {
+          res.json().then(function(data) {
+            status.textContent = data.errors ? data.errors.map(function(err) { return err.message; }).join(', ') : 'Hubo un error. Intentá de nuevo.';
+            status.style.color = '#e8a0a0';
+            status.style.display = 'block';
+            btn.textContent = 'Enviar Mensaje';
+            btn.disabled = false;
+          });
+        }
+      }).catch(function() {
+        status.textContent = 'Error de conexión. Intentá de nuevo.';
+        status.style.color = '#e8a0a0';
+        status.style.display = 'block';
+        btn.textContent = 'Enviar Mensaje';
+        btn.disabled = false;
+      });
     });
-    if (res.ok) {
-      contactForm.style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'block';
-      contactForm.reset();
-    } else {
-      const data = await res.json();
-      status.textContent = data.errors ? data.errors.map(e => e.message).join(', ') : 'Hubo un error. Intentá de nuevo.';
-      status.style.color = '#e8a0a0';
-      status.style.display = 'block';
-      btn.textContent = 'Enviar Mensaje';
-      btn.disabled = false;
-    }
-  } catch (err) {
-    status.textContent = 'Error de conexión. Intentá de nuevo.';
-    status.style.color = '#e8a0a0';
-    status.style.display = 'block';
-    btn.textContent = 'Enviar Mensaje';
-    btn.disabled = false;
   }
 });
 </script>
