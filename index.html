@@ -32,12 +32,17 @@ body {
 /* ─── NAVBAR ─── */
 .navbar { position:fixed; top:0; left:0; right:0; z-index:1000; display:flex; align-items:center; justify-content:center; padding:0 40px; height:72px; background:rgba(245,240,241,0.94); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid rgba(209,180,194,0.3); transition:all 0.4s ease; }
 .navbar.scrolled { height:60px; background:rgba(232,213,221,0.95); box-shadow:0 2px 20px rgba(44,37,39,0.08); }
-.nav-links-desktop { display:flex; align-items:center; gap:0; list-style:none; }
-.nav-links-desktop li a { text-decoration:none; font-family:'Josefin Sans',sans-serif; font-weight:300; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--text-mid); padding:8px 32px; transition:color 0.3s; position:relative; }
-.nav-links-desktop li a::after { content:''; position:absolute; bottom:0; left:50%; right:50%; height:1px; background:var(--mauve); transition:all 0.35s ease; }
-.nav-links-desktop li a:hover { color:var(--charcoal); }
-.nav-links-desktop li a:hover::after { left:28px; right:28px; }
-.nav-logo { width:52px; height:52px; border-radius:50%; object-fit:cover; margin:0 32px; transition:transform 0.3s; }
+.nav-links-desktop { display:flex; align-items:center; list-style:none; height:100%; width:100%; max-width:1000px; }
+.nav-left, .nav-right { display:flex; align-items:center; height:100%; flex:1; }
+.nav-left { justify-content:flex-end; }
+.nav-right { justify-content:flex-start; }
+.nav-center { display:flex; align-items:center; justify-content:center; height:100%; padding:0 24px; flex-shrink:0; }
+.nav-links-desktop a { text-decoration:none; font-family:'Josefin Sans',sans-serif; font-weight:300; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--text-mid); padding:0 28px; transition:color 0.3s; position:relative; display:flex; align-items:center; height:100%; }
+.nav-links-desktop a::after { content:''; position:absolute; bottom:0; left:50%; right:50%; height:1px; background:var(--mauve); transition:all 0.35s ease; }
+.nav-links-desktop a:hover { color:var(--charcoal); }
+.nav-links-desktop a:hover::after { left:28px; right:28px; }
+.nav-center a::after { display:none; }
+.nav-logo { width:48px; height:48px; border-radius:50%; object-fit:cover; transition:transform 0.3s; display:block; }
 .nav-logo:hover { transform:scale(1.08); }
 .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; position:absolute; right:24px; z-index:1050; background:none; border:none; padding:8px; }
 .hamburger span { display:block; width:24px; height:1.5px; background:var(--charcoal); transition:all 0.3s; transform-origin:center; }
@@ -222,7 +227,7 @@ section { padding:120px 0; }
 @media (max-width:900px) {
   .hero-bg { display:none; }
   .hero-bg-mobile { display:block; }
-  .nav-links-desktop { display:none; }
+  .nav-links-desktop { display:none !important; }
   .hamburger { display:flex; }
   .nav-mobile-logo { display:block; }
   .about-grid { grid-template-columns:1fr; gap:48px; }
@@ -244,13 +249,19 @@ section { padding:120px 0; }
 <!-- NAVBAR -->
 <nav class="navbar" id="navbar">
   <a href="#inicio" class="nav-mobile-logo"><img src="img/logo-circle.jpg" alt="Aura Eventos"></a>
-  <ul class="nav-links-desktop">
-    <li><a href="#sobre-nosotras">Sobre Nosotras</a></li>
-    <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#inicio"><img src="img/logo-circle.jpg" alt="Aura Eventos" class="nav-logo"></a></li>
-    <li><a href="#portafolio">Portafolio</a></li>
-    <li><a href="#contacto">Contacto</a></li>
-  </ul>
+  <div class="nav-links-desktop">
+    <div class="nav-left">
+      <a href="#sobre-nosotras">Sobre Nosotras</a>
+      <a href="#servicios">Servicios</a>
+    </div>
+    <div class="nav-center">
+      <a href="#inicio"><img src="img/logo-circle.jpg" alt="Aura Eventos" class="nav-logo"></a>
+    </div>
+    <div class="nav-right">
+      <a href="#portafolio">Portafolio</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </div>
   <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
